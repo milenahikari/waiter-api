@@ -5,5 +5,5 @@ import { Category } from '../../models/Category';
 export async function listCategories(req: Request, res: Response) {
   const categories = await Category.find();
 
-  return res.json(categories);
+  res.json(categories);
 }

@@ -2,11 +2,14 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import {router} from './router';
+import { router } from './router';
 
 dotenv.config();
 
-const uri =  `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASSWORD}@cluster0.os34z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const username = encodeURIComponent(process.env.USER_NAME || '');
+const password = encodeURIComponent(process.env.USER_PASSWORD || '');
+
+const uri =  `mongodb+srv://${username}:${password}@cluster0.os34z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.connect(uri).then(() => {
   const port = 3001;
